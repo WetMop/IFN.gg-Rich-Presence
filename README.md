@@ -1,5 +1,7 @@
 # IFN.gg-Rich-Presence
 
+Shut up its 100% python ik
+
 
 Please watch this video on how to download and configure the RPC:
 
