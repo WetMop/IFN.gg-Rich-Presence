@@ -1,6 +1,6 @@
 import os
 import time
-
+import subprocess
 
 #requirements
 os.system("pip3 install pypresence")
@@ -30,10 +30,10 @@ mem_per = round(psutil.virtual_memory().percent,1)
 
 # START - Anything can be edited and modifed below this text, only edit text inside of the quotation marks, i.e status="I love IFN.gg!"
 
+#There would be an option here for if you can overlap Rust RPC but I couldn't make it work so my apolgoies 
 
 
-
-status = "Playing on IFN.gg Networks!"
+status = "Playing on IFN.GG"
 small_text = "Rust"
 large_text = f"{cpu_per}% CPU | {mem_per}% MEMORY"
 
@@ -87,11 +87,26 @@ large_image = "largeimage"
 small_image = "smallimg"
 
 
-RPC.update(details=details + "0s", state=state, large_image=large_image, small_image=small_image, buttons=buttons)
+
 
 ready()
 
+
+
+
+
+def process_exists(process_name):
+    call = 'TASKLIST', '/FI', 'imagename eq %s' % process_name
+    output = subprocess.check_output(call).decode()
+    last_line = output.strip().split('\r\n')[-1]
+    return last_line.lower().startswith(process_name.lower())
+
+
+elapsed_time = 0
+
 while True:
+    
+
     elapsed_time = round(time.time() - start_time)
 
 
@@ -106,5 +121,5 @@ while True:
 
     RPC.update(details=details + str(time_string), state=state, large_image=large_image, small_image=small_image, large_text=large_text, small_text=small_text, buttons=buttons)
     time.sleep(1)
-
+    
 
